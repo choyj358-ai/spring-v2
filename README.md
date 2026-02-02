@@ -23,7 +23,10 @@
 ### 1. 회원가입
 
 - 그림 다운로드 (V)
-- user 폴더 UserController 만들어서 그림 연결
-- User 테이블 생성 - 더미데이터
-- UserRepository 만들어서 DB 테스트 코드
-- 컨트롤러, 서비스, 레포 연결해서 기능 완료하기
+- user 폴더 UserController 만들어서 그림 연결 (V)
+- User 테이블 생성 - 더미데이터 (V)
+- UserRepository 만들어서 DB 테스트 코드 (V)
+- 컨트롤러, 서비스, 레포 연결해서 기능 완료하기 (V)
+
+### 2. 로그인
+- 컨트롤러, 서비스, DTO, 세션

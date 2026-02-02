@@ -28,4 +28,15 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public User 로그인(String username, String password) {
+        User finUser = userRepository.findByUsername(username);
+        if (finUser == null)
+            throw new RuntimeException("username을 찾을 수 없어요");
+
+        if (!finUser.getPassword().equals(password)) {
+            throw new RuntimeException("패스워드가 일치하지 않아요");
+        }
+        return finUser;
+    }
+
 }
