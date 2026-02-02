@@ -1,5 +1,6 @@
 package com.example.boardv1.board;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -16,9 +17,15 @@ public class BoardController {
 
     private final BoardService boardService;
 
+    @PostMapping("/boards/save")
+    public String save(BoardRequest.SaveOrUpdateDTO reqDTO) throws IOException {
+        boardService.게시글쓰기(reqDTO.getTitle(), reqDTO.getContent());
+        return "redirect:/";
+    }
+
     @PostMapping("/boards/{id}/update")
-    public String update(@PathVariable("id") int id, String title, String content) {
-        boardService.게시글수정(id, title, content);
+    public String update(@PathVariable("id") int id, BoardRequest.SaveOrUpdateDTO reqDTO) {
+        boardService.게시글수정(id, reqDTO.getTitle(), reqDTO.getContent());
         return "redirect:/boards/" + id;
     }
 
@@ -46,5 +53,11 @@ public class BoardController {
         Board board = boardService.상세보기(id);
         req.setAttribute("model", board);
         return "board/detail";
+    }
+
+    @PostMapping("/boards/{id}/delete")
+    public String delete(@PathVariable("id") int id) {
+        boardService.게시글삭제(id);
+        return "redirect:/";
     }
 }
